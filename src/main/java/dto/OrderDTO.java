@@ -8,6 +8,34 @@ public class OrderDTO {
 	private String date;
 	private String state;
 	private String id;
+	private String productname;
+	private int price;
+	private int stock;
+
+
+	public String getProductname() {
+		return productname;
+	}
+
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 
 	public OrderDTO() {
 
@@ -64,6 +92,10 @@ public class OrderDTO {
 	@Override
 	public String toString() {
 		return "OrderDTO [no=" + no + ", productno=" + productno + ", quantity=" + quantity + ", date=" + date
-				+ ", state=" + state + ", id=" + id + "]";
+				+ ", state=" + state + ", id=" + id + ", productname=" + productname + ", price=" + price + ", stock="
+				+ stock + "]";
 	}
+
+
+
 }
