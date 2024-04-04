@@ -28,6 +28,7 @@ td {
 </style>
 </head>
 <body>
+<c:import url="/component/adminHeader.jsp" />
 	<form action="" method="post">
 		<table border="1" summary="주문 내역 리스트 관리">
 			<colgroup>
@@ -99,5 +100,6 @@ td {
 			</tfoot>
 		</table>
 	</form>
+	<c:import url="/component/adminFooter.jsp" />
 </body>
 </html>

@@ -11,6 +11,7 @@
 <title>관리자 회원 정보 수정 화면: admin/memberUpdate.jsp</title>
 </head>
 <body>
+<c:import url="/component/adminHeader.jsp" />
 	<form action="<c:url value="/member/UpdateServlet" />" method="post">
 		<table border="1" >
 			<colgroup>
@@ -108,4 +109,5 @@
 			</tfoot>
 		</table>
 	</form>
+	<c:import url="/component/adminFooter.jsp" />
 </body>

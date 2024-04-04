@@ -28,6 +28,7 @@
 </style>
 </head>
 <body>
+<c:import url="/component/indexHeader.jsp" />
 	<table border="1">
 		<thead>
 			<tr>
@@ -58,5 +59,6 @@
 		</tbody>
 
 	</table>
+	<c:import url="/component/indexFooter.jsp" />
 </body>
 </html>

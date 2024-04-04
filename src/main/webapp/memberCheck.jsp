@@ -32,6 +32,7 @@
 <title>회원 가입 확인 화면: memberCheck.jsp</title>
 </head>
 <body>
+<c:import url="/component/indexHeader.jsp" />
 	<form action="<c:url value="/member/SignUpServlet" />" method="post">
 		<table border="1" >
 			<colgroup>
@@ -129,5 +130,6 @@
 			</tfoot>
 		</table>
 	</form>
+	<c:import url="/component/indexFooter.jsp" />
 </body>
 </html>

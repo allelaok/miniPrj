@@ -9,6 +9,7 @@
 <title>주문 상세 페이지</title>
 </head>
 <body>
+<c:import url="/component/adminHeader.jsp" />
 	<table align="center" border="1">
 		<colgroup>
 			<col width="500">
@@ -90,7 +91,7 @@
 		</tbody>
 
 	</table>
-
+<c:import url="/component/adminFooter.jsp" />
 
 </body>
 </html>

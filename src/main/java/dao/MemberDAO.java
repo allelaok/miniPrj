@@ -153,6 +153,7 @@ public class MemberDAO {
 				member.setPwd(rs.getString("pwd"));
 				member.setName(rs.getString("name"));
 				member.setEmail(rs.getString("email"));
+				member.setBirthday(rs.getString("birthday"));
 				member.setZipcode(rs.getString("zipcode"));
 				member.setAddress(rs.getString("address"));
 				member.setGender(rs.getString("gender"));

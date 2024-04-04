@@ -28,7 +28,7 @@ td {
 </style>
 </head>
 <body>
-
+<c:import url="/component/indexHeader.jsp" />
 	<table border="1">
 		<colgroup>
 			<col width="80" />
@@ -78,5 +78,6 @@ td {
 
 				<!-- /Obsolete -->
 	</table>
+	<c:import url="/component/indexFooter.jsp" />
 </body>
 </html>

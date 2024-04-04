@@ -37,8 +37,8 @@ th{
 			    	<th><input type="button" value="로그아웃" onclick="location.href='<c:url value="/member/LogoutServlet"/>'" /></th>
 					<th><input type="button" value="회원수정" onclick="location.href='<c:url value="/member/UpdateServlet"/>'" /></th>
 					<th><input type="button" value="상품목록" onclick="location.href='<c:url value="/ProductListServlet?isAdmin=false"/>'"></th>
-					<th><input type="button" value="장바구니" onclick="location.href='<c:url value="/member/LoginServlet"/>'"></th>
-					<th><input type="button" value="구매목록" onclick="location.href='<c:url value="/member/LoginServlet"/>'"></th>
+					<th><input type="button" value="장바구니" onclick="location.href='<c:url value="/cart/CartListServlet"/>'"></th>
+					<th><input type="button" value="구매목록" onclick="location.href='<c:url value="/orderList.jsp"/>'"></th>
 			    </c:otherwise>
 		    </c:choose>
 			

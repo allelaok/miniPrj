@@ -36,8 +36,6 @@ public class OrderListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("orderList.jsp");
 		requestDispatcher.forward(request, response);
-
-		doHandel(request, response);
 	}
 
 }

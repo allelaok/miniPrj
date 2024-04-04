@@ -16,6 +16,7 @@
 </style>
 </head>
 <body>
+	<c:import url="/component/indexHeader.jsp" />
 	<form action="<c:url value="/member/LoginServlet" />" method="post">
 		<table border="1">
 			<tr>
@@ -37,5 +38,6 @@
 			</tr>
 		</table>
 	</form>
+	<c:import url="/component/indexFooter.jsp" />
 </body>
 </html>

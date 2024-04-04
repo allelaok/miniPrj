@@ -24,7 +24,7 @@ th{
 <body>
 	<table>
 		<tr>
-		<th><input type="button" value="홈" onclick="location.href='<c:url value="${ contextPath }/index.jsp"/>'"></th>
+		<th><input type="button" value="홈" onclick="location.href='<c:url value="/index.jsp"/>'"></th>
 			<c:choose>
 			    <c:when test="${ empty sessionScope.adminId }">
 			      	<th><input type="button" value="로그인" onclick="location.href='<c:url value="/admin/AdminLoginServlet"/>'" /></th>
@@ -36,7 +36,7 @@ th{
 			    	<th><input type="button" value="로그아웃" onclick="location.href='<c:url value="/admin/AdminLogoutServlet"/>'" /></th>
 			    	<th><input type="button" value="회원관리" onclick="location.href='<c:url value="/member/MemberListServlet"/>'" /></th>
 			    	<th><input type="button" value="상품관리" onclick="location.href='<c:url value="/ProductListServlet?isAdmin=true"/>'"></th>
-					<th><input type="button" value="주문관리" onclick="location.href='<c:url value="/admin/AdminLoginServlet"/>'"></th>
+					<th><input type="button" value="주문관리" onclick="location.href='<c:url value="/admin/orderListMgr.jsp"/>'"></th>
 			    </c:otherwise>
 		    </c:choose>
 

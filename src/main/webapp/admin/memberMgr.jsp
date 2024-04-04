@@ -11,6 +11,7 @@
 <title>회원관리 페이지 : memberMgr.jsp</title>
 </head>
 <body>
+<c:import url="/component/adminHeader.jsp" />
 	<table border="1" summary="회원목록">
 		<colgroup>
 			<col width="80" />
@@ -38,7 +39,7 @@
 			<!-- 회원목록의 데이터부분 시작 -->
 		<tbody>
 			<c:choose>
-				<c:when test="${ memberList.length == 0 }">
+				<c:when test="${ empty memberList }">
 					<%-- if() 부분 --%>
 					<tr>
 						<td align="center" colspan="5">등록된 게시물이 없습니다.</td>
@@ -85,5 +86,6 @@
 			</c:choose>
 		</tbody>
 	</table>
+	<c:import url="/component/adminFooter.jsp" />
 </body>
 </html>

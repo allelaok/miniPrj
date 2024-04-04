@@ -13,6 +13,7 @@
 <title>회원 가입 화면: signup.jsp</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
 	/* 아이디 중복 체크 */
 	function fn_process() {
 		var _id = $("#id").val();
@@ -72,6 +73,7 @@
 </script>
 </head>
 <body>
+<c:import url="/component/indexHeader.jsp" />
 	<form action="${ contextPath }/memberCheck.jsp" method="post"  accept-charset="UTF-8">
 		<table border="1" >
 			<colgroup>
@@ -193,5 +195,6 @@
 			</tfoot>
 		</table>
 	</form>
+	<c:import url="/component/indexFooter.jsp" />
 </body>
 </html>
