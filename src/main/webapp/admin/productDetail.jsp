@@ -75,7 +75,7 @@ table thead tr th {
 		</thead>
 	
 		<tr>
-			<td style="text-align: center;"><img src="${contextPath }/FileDownloadServlet?fileName=${product.image}" width="300" height="300"></td>
+			<td style="text-align: center;"><img src="${contextPath }/FileDownloadServlet?fileName=${product.image}" width="150" height="180"></td>
 			<td>
 				<table border="1">			
 					<tr><td><b>상품이름 : </b>${product.name}</td></tr>

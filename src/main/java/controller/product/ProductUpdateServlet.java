@@ -49,6 +49,7 @@ public class ProductUpdateServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		
 		ProductDTO product = doHandle(request, response);
 		
 		productDAO = new ProductDAO();
@@ -111,11 +112,14 @@ public class ProductUpdateServlet extends HttpServlet {
 							idx = fileitem.getName().lastIndexOf("/");
 					}							
 					
+							
 					String fileName = fileitem.getName().substring(idx + 1);
-					product.setImage(fileName);
-					System.out.println("==> 저장될 파일 : " + currentPath + "\\" + fileName);						
-					File uploadFile = new File(currentPath + "\\" + fileName);
-					fileitem.write(uploadFile);
+					if(fileName != "" || fileName!= null) {
+						product.setImage(fileName);
+						System.out.println("==> 저장될 파일 : " + currentPath + "\\" + fileName);						
+						File uploadFile = new File(currentPath + "\\" + fileName);
+						fileitem.write(uploadFile);						
+					}
 				}
 			}
 			

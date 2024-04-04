@@ -25,7 +25,7 @@ public class ProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 /** BOARD DAO */
 	private ProductDAO productdDAO = null;
-    boolean admin = false;
+    boolean admin = true;
     
     public ProductListServlet() {
         super();

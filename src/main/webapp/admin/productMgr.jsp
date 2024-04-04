@@ -35,7 +35,23 @@ input{
 </style>
 <script type="text/javascript">
 	function gotoDetail(productno){
-		document.location = "ProductDetailServlet?productno="+productno;
+	    // Create a new form element
+	    var form = document.createElement('form');
+	    form.method = 'POST';
+	    form.action = 'ProductDetailServlet';
+	
+	    // Create a hidden input field to hold the productno value
+	    var input = document.createElement('input');
+	    input.type = 'hidden';
+	    input.name = 'productno';
+	    input.value = productno;
+	
+	    // Append the input field to the form
+	    form.appendChild(input);
+	
+	    // Append the form to the body and submit it
+	    document.body.appendChild(form);
+	    form.submit();
 	}
 	
 	function gotoInsert(){

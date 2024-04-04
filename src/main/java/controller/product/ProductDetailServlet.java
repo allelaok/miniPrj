@@ -24,7 +24,7 @@ public class ProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        private ProductDAO productDAO = null;
        
-       boolean admin = false;
+       boolean admin = true;
        
     public ProductDetailServlet() {
         super();
@@ -33,6 +33,11 @@ public class ProductDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
+		
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("productno"));
 		
 		ProductDTO productDTO = new ProductDTO();
@@ -49,11 +54,6 @@ public class ProductDetailServlet extends HttpServlet {
 		RequestDispatcher requestDispatcher =
 			request.getRequestDispatcher(pageName);
 		requestDispatcher.forward(request, response);
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		
 	}
 	
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response)

@@ -213,13 +213,18 @@ public class ProductDAO extends MySQLConnector {
 
 		try {
 			this.conn =connection();
-			String query="update tblproduct set NAME=?, PRICE=?, DETAIL=?, STOCK=?, IMAGE=? where no=" + product.getNo();
+			String image = "";
+			if(product.getImage() != null)
+				image = ", IMAGE=?";
+			
+			String query="update tblproduct set NAME=?, PRICE=?, DETAIL=?, STOCK=?" + image + " where no=" + product.getNo();
 
 			this.pstmt=this.conn.prepareStatement(query);
 			this.pstmt.setString(1, product.getName());
 			this.pstmt.setInt(2, product.getPrice());
 			this.pstmt.setString(3, product.getDetail());
 			this.pstmt.setInt(4, product.getStock());
+			if(product.getImage() != null)
 			this.pstmt.setString(5, product.getImage());
 			this.pstmt.executeUpdate();
 			

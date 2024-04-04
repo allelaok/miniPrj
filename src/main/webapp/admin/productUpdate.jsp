@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
+<c:set var="productImage" value="${product.image}"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +24,8 @@
 		        }
 		    }	
 		}); 
+		
 	</script>
-
 </head>
 <body>
 	<form action="ProductUpdateServlet" method="post" enctype="multipart/form-data">
@@ -57,9 +58,8 @@
 				</tr>
 				<tr>
 					<th align="center">상품이미지</th>
-					<td>
-            			<input type="file" name="image">
-            			
+					<td style="text-align: center;">
+            			<input type="file" name="image" accept="image/*"">
 					</td>
 				</tr>
 				<tr>

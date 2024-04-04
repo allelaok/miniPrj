@@ -61,7 +61,7 @@
 				<tr>
 					<th align="center">상품이미지</th>
 					<td>
-					<input type="file" name="file" >
+					<input type="file" name="file" accept="image/*">
 					
 					</td>
 				</tr>
