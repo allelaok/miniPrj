@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDAO;
 import dto.ProductDTO;
-
-@WebServlet("/product/ProductDetailServlet")
+/**
+ * 상품 상세 페이지 서블릿 클래스
+ * @since 2024.04.04
+ * @author nsr
+ */
+@WebServlet("/ProductDetailServlet")
 public class ProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        private ProductDAO productDAO = null;
@@ -24,19 +28,21 @@ public class ProductDetailServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		
-		int no = Integer.parseInt(request.getParameter("no"));
+		int no = Integer.parseInt(request.getParameter("productno"));
 		
-		// 게시물 상세 조회
 		ProductDTO productDTO = new ProductDTO();
 		this.productDAO = new ProductDAO();
 		productDTO = this.productDAO.productDetail(no);
 		
-		// View 사용될 객체 설정
-		request.setAttribute("productDTO", productDTO);
-		
-		// View 보내기
+		request.setAttribute("product", productDTO);
+		String pageName = "";
+		boolean admin = true;
+		if(admin)
+			pageName = "admin/productDetail.jsp";
+		else
+			pageName = "/productDetail.jsp";
 		RequestDispatcher requestDispatcher =
-			request.getRequestDispatcher("/productDetail.jsp");
+			request.getRequestDispatcher(pageName);
 		requestDispatcher.forward(request, response);
 	}
 

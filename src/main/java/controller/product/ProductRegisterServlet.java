@@ -1,41 +1,59 @@
 package controller.product;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ProductDAO;
+import dto.ProductDTO;
+
 /**
- * Servlet implementation class ProductRegisterServlet
+ * 상품 등록 페이지 서블릿 클래스
+ * @since 2024.04.04
+ * @author nsr
  */
-@WebServlet("/product/ProductRegisterServlet")
+@WebServlet("/ProductRegisterServlet")
 public class ProductRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
+	 /** BOARD DAO */
+	private ProductDAO productdDAO = null;
     public ProductRegisterServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		String name = request.getParameter("pname");
+		String price = request.getParameter("pprice");
+		String contents = request.getParameter("pcontents");
+		String count = request.getParameter("pcount");
+		String image = request.getParameter("image");
+		
+		
+		ProductDTO product = new ProductDTO();
+		product.setDetail(contents);
+		product.setImage(image);
+		product.setName(name);
+		product.setPrice(Integer.parseInt(price));
+		product.setStock(count);
+		
+		productdDAO = new ProductDAO();
+		boolean complete = productdDAO.insertProduct(product);
+		
+		
+		
+		
+		
 	}
 
 }

@@ -9,22 +9,22 @@ import java.sql.Statement;
 
 public class MySQLConnector {
 
-	// 사용할 객체 초기화
+	// �궗�슜�븷 媛앹껜 珥덇린�솕
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
-	// 데이터베이스 접속 설정 정보
-	/** JDBC DRIVER 패키지 정보 */
+	// �뜲�씠�꽣踰좎씠�뒪 �젒�냽 �꽕�젙 �젙蹂�
+	/** JDBC DRIVER �뙣�궎吏� �젙蹂� */
 	private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 
-	/** 데이터베이스 URL */
+	/** �뜲�씠�꽣踰좎씠�뒪 URL */
 	private final String DB_URL = "jdbc:mysql://127.0.0.1:3306/simple_shop";
 
-	/** 데이터베이스 아이디 */
+	/** �뜲�씠�꽣踰좎씠�뒪 �븘�씠�뵒 */
 	private final String DB_ID = "root";
 
-	/** 데이터베이스 암호 */
+	/** �뜲�씠�꽣踰좎씠�뒪 �븫�샇 */
 	private final String DB_PWD = "1234";
 
 	public MySQLConnector() {
@@ -32,10 +32,10 @@ public class MySQLConnector {
 	}
 
 	public Connection connection() {
-		if (conn != null) {
+		
 			try {
 
-				// 데이터베이스 객체 생성
+				// �뜲�씠�꽣踰좎씠�뒪 媛앹껜 �깮�꽦
 				Class.forName(this.JDBC_DRIVER);
 				this.conn = DriverManager.getConnection(this.DB_URL, this.DB_ID, this.DB_PWD);
 
@@ -44,8 +44,8 @@ public class MySQLConnector {
 			} catch (Exception e) {
 				System.err.println("CONNECTION ERR : " + e.getMessage());
 			}
-		}
-		return null;
+		
+		return conn;
 	}
 
 	public void close(Connection connector) {
@@ -60,10 +60,10 @@ public class MySQLConnector {
 
 	public void close(Connection connector, Statement stmt, ResultSet rs) {
 		try {
-			if (connector != null) {
+			if (rs != null) {
 				rs.close();
 			}
-			if (connector != null) {
+			if (stmt != null) {
 				stmt.close();
 			}
 			if (connector != null) {
@@ -76,10 +76,10 @@ public class MySQLConnector {
 
 	public void close(Connection connector, PreparedStatement pstmt, ResultSet rs) {
 		try {
-			if (connector != null) {
+			if (rs != null) {
 				rs.close();
 			}
-			if (connector != null) {
+			if (pstmt != null) {
 				pstmt.close();
 			}
 			if (connector != null) {
@@ -92,7 +92,7 @@ public class MySQLConnector {
 
 	public void close(Connection connector, PreparedStatement pstmt) {
 		try {
-			if (connector != null) {
+			if (pstmt != null) {
 				pstmt.close();
 			}
 			if (connector != null) {

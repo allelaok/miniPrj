@@ -6,27 +6,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>상품 목록 페이지</title>
-<style type="text/css">
-* {
-	font-size: 9pt;
-}
+	<meta charset="UTF-8">
+	<title>상품 목록 페이지</title>
+	<style type="text/css">
+		* {
+			font-size: 9pt;
+		}
+		
+		p {
+			width: 600px;
+			text-align: right;
+		}
+		
+		table thead tr th {
+			background-color: gray;
+		}
+		
+		td {
+			text-align: center;
+		}
+	</style>
+	
+	
+	 <script type="text/javascript">
+       function gotoDetail(productno) {
+			document.location = "ProductDetailServlet?productno="+productno;
+      	}
+	 </script>
 
-p {
-	width: 600px;
-	text-align: right;
-}
 
-table thead tr th {
-	background-color: gray;
-}
-
-td {
-	text-align: center;
-}
-
-</style>
 </head>
 <body>
 
@@ -48,26 +56,27 @@ td {
 			<th>상세보기</th>
 		</tr>
 		</thead>
+		
+		<tbody>
 		<c:forEach var="product" items="${productArray}">
 			<tr>
 				<td>${product.name}</td>
 				<td>${product.price}</td>
 				<td>${product.date}</td>
 				<td>${product.stock}</td>
-				<td><input type="button" value="상세보기"></td>
+				<td><input type="button" value="상세보기" onclick="gotoDetail('${product.no}')"></td>
 			</tr>
 		</c:forEach>
 		
-		<!-- Obsolete -->
-			<tr>
-				<td>test</td>
-				<td>test</td>
-				<td>test</td>
-				<td>test</td>
-				<td><input type="button" value="상세보기"></td>
-			</tr>
-		<!-- /Obsolete -->
+		</tbody>
 		
+		<tfoot>
+		
+		<!-- 페이지 번호 -->
+			<tr>
+				<td align="center" colspan="5"><c:out value="${pageNavigator}" escapeXml="false" /></td>
+			</tr>
+		</tfoot>
 	</table>
 	
 </body>

@@ -33,6 +33,14 @@ table thead tr th {
     vertical-align: middle;
 }
 </style>
+
+<script type="text/javascript">
+	function gotoCart(){
+		alert("장바구니에 담았습니다.");
+		
+	}
+</script>
+
 </head>
 <body>
 	<table border="1">
@@ -50,15 +58,15 @@ table thead tr th {
 		<tr>
 			<td style="text-align: center;"><img src="${contextPath}/images/SKY.jpeg" class="custom-image"></td>
 			<td>
-			<b>상품이름 : SKY폰</b><br>
-			<b>가 격 : </b>800,000원<br>
-			<b>수 량 : </b><input type="number" class="custom-text">개<br>
-			<btn><input type="button" value="장바구니 담기"></btn><br>
+			<b>상품이름 : ${product.name}</b><br>
+			<b>가 격 : </b>${product.price}원<br>
+			<b>수 량 : </b><input type="number" value="${product.stock}" class="custom-text">개<br>
+			<btn><input type="button" value="장바구니 담기" onclick="gotoCart()"></btn><br>
 			</td>
 			<td style="vertical-align: top;">
 			<b>상세설명</b><br>
 			<br>
-			SKY폰 상세설명
+			${product.detail}
 			</td>
 		</tr>
 		

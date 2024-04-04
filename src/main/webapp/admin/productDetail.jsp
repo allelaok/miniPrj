@@ -64,6 +64,13 @@ table thead tr th {
 			</td>
 		</tr>
 		
+		<tr>
+				<td colspan="3" style="text-align:center;">
+					<input type="button" value="수정하기" onclick="gotoUpdate()">
+					<input type="button" value="삭제하기" onclick="gotoDelete()">
+				</td>
+			</tr>
+		
 	</table>
 </body>
 </html>

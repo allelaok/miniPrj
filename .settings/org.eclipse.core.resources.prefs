@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/java/controller/product/ProductDetailServlet.java=UTF-8
+encoding//src/main/java/dao/MySQLConnector.java=UTF-8
+encoding//src/main/java/dao/ProductDAO.java=UTF-8
+encoding//src/main/java/dto/ProductDTO.java=UTF-8

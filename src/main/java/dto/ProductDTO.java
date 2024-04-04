@@ -1,12 +1,14 @@
 package dto;
 
+import java.sql.Date;
+
 public class ProductDTO {
 
 	private int no;
 	private String name;
 	private int price;
 	private String detail;
-	private int date;
+	private Date date;
 	private String stock;
 	private String image;
 
@@ -46,11 +48,11 @@ public class ProductDTO {
 		this.detail = detail;
 	}
 
-	public int getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(int date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -76,7 +78,7 @@ public class ProductDTO {
 				+ ", stock=" + stock + ", image=" + image + "]";
 	}
 	
-//	// 파라미터
+//	// �뙆�씪誘명꽣
 //	String no = request.getParameter("no");
 //	String name = request.getParameter("name");
 //	String price = request.getParameter("price");
@@ -85,7 +87,7 @@ public class ProductDTO {
 //	String stock = request.getParameter("stock");
 //	String image = request.getParameter("image");
 //
-//	// 모델
+//	// 紐⑤뜽
 //	ProductDTO productDTO = new ProductDTO();
 //	productDTO.setNo(Integer.parseInt(no));
 //	productDTO.setName(name);
