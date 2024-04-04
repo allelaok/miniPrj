@@ -37,6 +37,7 @@ table thead tr th {
 <script type="text/javascript">
 
 	function gotoUpdate(no){
+		
 		document.location = "ProductUpdateServlet?productno="+no;
 	}
 	

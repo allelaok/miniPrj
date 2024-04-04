@@ -25,7 +25,8 @@ public class ProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 /** BOARD DAO */
 	private ProductDAO productdDAO = null;
-   
+    boolean admin = false;
+    
     public ProductListServlet() {
         super();
     }
@@ -66,7 +67,6 @@ public class ProductListServlet extends HttpServlet {
 		
 		// View º¸³»±â
 		String pageName = "";
-		boolean admin = true;
 		if(admin)
 			pageName = "admin/productMgr.jsp";
 		else

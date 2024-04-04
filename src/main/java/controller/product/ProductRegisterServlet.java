@@ -49,25 +49,7 @@ public class ProductRegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		String name = request.getParameter("pname");
-		String price = request.getParameter("pprice");
-		if(price == "" || price == null)
-			price = "0";
-		
-		String contents = request.getParameter("pcontents");
-		String count = request.getParameter("pcount");
-		if(count == ""|| count == null)
-			count = "0";
-		
-		String image = doHandle(request, response);
-		
-		ProductDTO product = new ProductDTO();
-		product.setDetail(contents);
-		product.setImage(image);
-		product.setName(name);
-		product.setPrice(Integer.parseInt(price));
-		product.setStock(Integer.parseInt(count));
+		ProductDTO product = doHandle(request, response);
 		
 		productdDAO = new ProductDAO();
 		boolean complete = productdDAO.insertProduct(product);
@@ -82,70 +64,68 @@ public class ProductRegisterServlet extends HttpServlet {
 		
 	}
 	
-	private String doHandle(HttpServletRequest request, HttpServletResponse response)
+	private ProductDTO doHandle(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String fileName = "";
+		ProductDTO product = new ProductDTO();
 		// 한글꺠짐 방지
-				request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 
-				// 파일 객체
-				File currentPath = new File("c:/github/miniPrj/images");
+		// 파일 객체
+		File currentPath = new File("c:/github/miniPrj/images");
 
-				// 파일 업로드를 위한 설정 객체
-				DiskFileItemFactory factory = new DiskFileItemFactory();
-				factory.setRepository(currentPath);
-				factory.setSizeThreshold(1024 * 1024);
+		// 파일 업로드를 위한 설정 객체
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setRepository(currentPath);
+		factory.setSizeThreshold(1024 * 1024);
 
-				// 서블릿 파일 업로드 객체
-				ServletFileUpload upload = new ServletFileUpload(factory);
+		// 서블릿 파일 업로드 객체
+		ServletFileUpload upload = new ServletFileUpload(factory);
 
-				// 외부 자원 다루기
-				try {
-					List items = upload.parseRequest(request);
-					
-					for(int i = 0; i < items.size(); i++) {
-						System.out.println("업로드할 데이터 추출 시작");
+		// 외부 자원 다루기
+		try {
+			List items = upload.parseRequest(request);
+			
+			for(int i = 0; i < items.size(); i++) {
+				FileItem fileitem = (FileItem)items.get(i);
+				// 파일이 아닌 나머지
+				if(fileitem.isFormField()) {
+					if("no".equals(fileitem.getFieldName())) {
 						
-						FileItem fileitem = (FileItem)items.get(i);
-						
-						/** FileItem.isFormField() : boolean
-						 * FileItem오브젝트에 저장되어 있는 값이 파일데이터인지
-						 * 그외의 <form> 데이터인지 판단
-						 * 그 밖의 <form> 데이터의 경우는 true을 반환하고,
-						 * 파일데이터의 경우는 false을 반환				 	
-						 **/				
-						if(fileitem.isFormField()) {
-							System.out.println("==> " +  fileitem.getFieldName() + " " + fileitem.getString("utf-8"));
-						}else {
-							System.out.println("==> 매개변수명 : " + fileitem.getFieldName());
-							System.out.println("==> 파일명 : " + fileitem.getName());
-							System.out.println("==> 파일의 크기 : " + fileitem.getSize() + "byte");
-							
-							if(fileitem.getSize() > 0) {
-								System.out.println("==> 파일 이름 : " + fileitem.getName());
-								int idx = fileitem.getName().lastIndexOf("\\");
-								System.out.println("==> \\의 index 번호 : " + idx);
-								
-								if(idx == -1) {
-								 	idx = fileitem.getName().lastIndexOf("/");
-								 	System.out.println("==> /의 index 번호 : " + idx);
-								} // if(idx == -1){} END
-								fileName = fileitem.getName().substring(idx + 1);
-								System.out.println("==> 파일 이름 : " + fileitem.getName().substring(idx + 1));
-								
-								System.out.print("==> 저장될 파일 : " + currentPath + "\\" + fileName);						
-								File uploadFile = new File(currentPath + "\\" + fileName);
-								fileitem.write(uploadFile);
-								
-							} // if(fileitem.getSize() > 0){} END
-						} // if(fileitem.isFormField()){} else{} END
+						product.setNo(Integer.parseInt(fileitem.getString("utf-8")));
 					}
-					
-				} catch (Exception e) {
-					System.err.println("FILE UPLOAD FAIL!!!");
+					else if("pname".equals(fileitem.getFieldName())) {	
+						product.setName(fileitem.getString("utf-8"));
+					}
+					else  if("pprice".equals(fileitem.getFieldName())) {
+						product.setPrice(Integer.parseInt(fileitem.getString("utf-8")));
+					}
+					else  if("pcontents".equals(fileitem.getFieldName())) {
+						product.setDetail(fileitem.getString("utf-8"));
+					}
+					else  if("pcount".equals(fileitem.getFieldName())) {
+						product.setStock(Integer.parseInt(fileitem.getString("utf-8")));
+					}
 				}
+				// 파일인 경우
+				else if(fileitem.getSize() > 0) {
+					int idx = fileitem.getName().lastIndexOf("\\");
+					if(idx == -1) {
+						idx = fileitem.getName().lastIndexOf("/");
+					}							
+					
+					String fileName = fileitem.getName().substring(idx + 1);
+					product.setImage(fileName);
+					System.out.println("==> 저장될 파일 : " + currentPath + "\\" + fileName);						
+					File uploadFile = new File(currentPath + "\\" + fileName);
+					fileitem.write(uploadFile);
+				}
+			}
+			
+		} catch (Exception e) {
+			System.err.println("FILE UPLOAD FAIL!!!");
+		}	
 
-        return fileName;
+        return product;
 
 	} // doHandle()
 	

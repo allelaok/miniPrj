@@ -23,6 +23,9 @@ import dto.ProductDTO;
 public class ProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        private ProductDAO productDAO = null;
+       
+       boolean admin = false;
+       
     public ProductDetailServlet() {
         super();
     }
@@ -37,8 +40,8 @@ public class ProductDetailServlet extends HttpServlet {
 		productDTO = this.productDAO.productDetail(no);
 		
 		request.setAttribute("product", productDTO);
+		
 		String pageName = "";
-		boolean admin = true;
 		if(admin)
 			pageName = "admin/productDetail.jsp";
 		else

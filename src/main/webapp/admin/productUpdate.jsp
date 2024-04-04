@@ -6,30 +6,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>상품 수정 페이지</title>
-
+	<meta charset="UTF-8">
+	<title>상품 수정 페이지</title>
 	<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script type="text/javascript">
-
-	$(document).ready(function(){
-
-		var boolResult = "${bool}";
-
-	    if (boolResult != null) {
-	        if(boolResult === "true"){
-	        	alert("수정하였습니다.");
-				document.location = "ProductListServlet";
-	        } else if(boolResult === "false"){
-	        	alert("수정실패.");
-	        }
-	    }	
-	}); 
+		$(document).ready(function(){
+	
+			var boolResult = "${bool}";
+	
+		    if (boolResult != null) {
+		        if(boolResult === "true"){
+		        	alert("수정하였습니다.");
+					document.location = "ProductListServlet";
+		        } else if(boolResult === "false"){
+		        	alert("수정실패.");
+		        }
+		    }	
+		}); 
 	</script>
 
 </head>
 <body>
-	<form action="${contextPath}/ProductUpdateServlet" method="post" enctype="multipart/form-data">
+	<form action="ProductUpdateServlet" method="post" enctype="multipart/form-data">
 		<table border="1" summary="상품 수정">
 			<colgroup>
 			<col width="150">
@@ -60,14 +58,14 @@
 				<tr>
 					<th align="center">상품이미지</th>
 					<td>
-					<input type="file" name="image" value="${product.image}">
+            			<input type="file" name="image">
+            			
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
 					
-						<input type="hidden" name="no" value="${product.no}" >
-					
+						<input type=hidden name="no" value="${product.no}" >
 						<input type="submit" value="상품등록">   
 						<input type="reset" value="다시쓰기">
 					</td>
