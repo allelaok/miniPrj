@@ -51,7 +51,7 @@ protected void doHandle(HttpServletRequest request, HttpServletResponse response
 	request.setCharacterEncoding("utf-8");
 	response.setContentType("text/html;charset=utf-8");
 	
-	String file_repo="c:\\file_repo";
+	String file_repo="c:\\github\\miniPrj\\images";
 	
 	String fileName = (String)request.getParameter("fileName");
 	System.out.println("==> fileName : " + fileName);
