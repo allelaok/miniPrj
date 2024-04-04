@@ -35,7 +35,7 @@ input{
 </style>
 <script type="text/javascript">
 	function gotoDetail(productno){
-		document.location = "ProductDetailServlet?productno="+productno+"&isAdmin="+true;
+		document.location = "ProductDetailServlet?productno="+productno+"&isAdmin=true";
 	}
 	
 	function gotoInsert(){
