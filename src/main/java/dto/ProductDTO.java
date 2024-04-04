@@ -9,7 +9,7 @@ public class ProductDTO {
 	private int price;
 	private String detail;
 	private Date date;
-	private String stock;
+	private int stock;
 	private String image;
 
 	public ProductDTO() {
@@ -56,11 +56,11 @@ public class ProductDTO {
 		this.date = date;
 	}
 
-	public String getStock() {
+	public int getStock() {
 		return stock;
 	}
 
-	public void setStock(String stock) {
+	public void setStock(int stock) {
 		this.stock = stock;
 	}
 

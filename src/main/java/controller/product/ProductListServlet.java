@@ -42,7 +42,6 @@ public class ProductListServlet extends HttpServlet {
 		int countPerPage = 3;
 		if(pageNum == null) {
 			pageNum = "1";
-			System.out.println("PAGENUM NULL");
 		}
 		
 		// DAO (DB의 테이블에 접속하여 쿼리를 실행할 수 있는 메서드 보유 객체 생성)
@@ -75,7 +74,6 @@ public class ProductListServlet extends HttpServlet {
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(pageName);
 		requestDispatcher.forward(request, response);
-		System.out.println("이동");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 

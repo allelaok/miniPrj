@@ -56,7 +56,7 @@ table thead tr th {
 		</thead>
 	
 		<tr>
-			<td style="text-align: center;"><img src="${contextPath}/images/SKY.jpeg" class="custom-image"></td>
+			<td style="text-align: center;"><img src="${contextPath }/FileDownloadServlet?fileName=${product.image}" width="300" height="300"></td>
 			<td>
 			<b>상품이름 : ${product.name}</b><br>
 			<b>가 격 : </b>${product.price}원<br>

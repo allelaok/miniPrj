@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<c:set var="contextPath" value="${request.getContextPath()}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,9 +39,9 @@ input{
 	}
 	
 	function gotoInsert(){
-		document.location = "admin/productInsert.jsp";
+		document.location = "${contextPath}/admin/productInsert.jsp";
 	}
-	
+
 </script>
 
 </head>

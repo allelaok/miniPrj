@@ -33,6 +33,32 @@ table thead tr th {
     vertical-align: middle;
 }
 </style>
+<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+
+	function gotoUpdate(no){
+		document.location = "ProductUpdateServlet?productno="+no;
+	}
+	
+	function gotoDelete(no){
+		document.location = "ProductDeleteServlet?productno="+no;
+	}	
+	
+	$(document).ready(function(){
+
+		var boolResult = "${bool}";
+
+	    if (boolResult != null) {
+	        if(boolResult === "true"){
+	        	alert("삭제하였습니다.");
+				document.location = "ProductListServlet";
+	        } else if(boolResult === "false"){
+	        	alert("삭제실패.");
+	        }
+	    }	
+	}); 
+</script>
+
 </head>
 <body>
 	<table border="1">
@@ -43,31 +69,31 @@ table thead tr th {
 		</colgroup>
 		<thead>
 		<tr>
-			<th colspan="3">SKY폰</th>
+			<th colspan="3">${product.name}</th>
 		</tr>
 		</thead>
 	
 		<tr>
-			<td style="text-align: center;"><img src="${contextPath}/images/SKY.jpeg" class="custom-image"></td>
+			<td style="text-align: center;"><img src="${contextPath }/FileDownloadServlet?fileName=${product.image}" width="300" height="300"></td>
 			<td>
 				<table border="1">			
-					<tr><td><b>상품이름 : </b>SKY폰</td></tr>
-					<tr><td><b>가 격 : </b>800,000원</td></tr>
-					<tr><td><b>입고날짜 :</b>2305454545454544</td></tr>
-					<tr><td><b>재 고 : </b>45</td></tr>
+					<tr><td><b>상품이름 : </b>${product.name}</td></tr>
+					<tr><td><b>가 격 : </b>${product.price}</td></tr>
+					<tr><td><b>입고날짜 :</b>${product.date}</td></tr>
+					<tr><td><b>재 고 : </b>${product.stock}</td></tr>
 				</table>
 			</td>
 			<td style="vertical-align: top;">
 			<b>상세설명</b><br>
 			<br>
-			SKY폰 상세설명
+			${product.detail}
 			</td>
 		</tr>
 		
 		<tr>
 				<td colspan="3" style="text-align:center;">
-					<input type="button" value="수정하기" onclick="gotoUpdate()">
-					<input type="button" value="삭제하기" onclick="gotoDelete()">
+					<input type="button" value="수정하기" onclick="gotoUpdate('${product.no}')">
+					<input type="button" value="삭제하기" onclick="gotoDelete('${product.no}')">
 				</td>
 			</tr>
 		
