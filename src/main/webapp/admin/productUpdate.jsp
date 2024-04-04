@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="productImage" value="${product.image}"></c:set>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 		    if (boolResult != null) {
 		        if(boolResult === "true"){
 		        	alert("수정하였습니다.");
-					document.location = "ProductListServlet";
+					document.location = "ProductListServlet?isAdmin="true;
 		        } else if(boolResult === "false"){
 		        	alert("수정실패.");
 		        }

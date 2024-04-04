@@ -19,7 +19,7 @@
 	    if (boolResult != null) {
 	        if(boolResult === "true"){
 	        	alert("등록하였습니다.");
-				document.location = "ProductListServlet";
+				document.location = "ProductListServlet?isAdmin="true;
 	        } else if(boolResult === "false"){
 	        	alert("등록실패.");
 	        }

@@ -68,7 +68,7 @@ public class ProductListServlet extends HttpServlet {
 		
 		// View º¸³»±â
 		String pageName = "";
-		if(admin == "true")
+		if(admin.equals("true"))
 			pageName = "admin/productMgr.jsp";
 		else
 			pageName = "/productList.jsp";

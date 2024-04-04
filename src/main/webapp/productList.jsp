@@ -30,7 +30,7 @@
 	
 	 <script type="text/javascript">
        function gotoDetail(productno) {
-			document.location = "ProductDetailServlet?productno="+productno;
+			document.location = "ProductDetailServlet?productno="+productno+"&isAdmin="+false;
       	}
 	 </script>
 
