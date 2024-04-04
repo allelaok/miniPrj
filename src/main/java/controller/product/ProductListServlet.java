@@ -9,9 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ProductDAO;
-import dto.ListDTO;
 import dto.ProductDTO;
 import utils.pageNavigator;
 
@@ -25,7 +25,7 @@ public class ProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	 /** BOARD DAO */
 	private ProductDAO productdDAO = null;
-    boolean admin = true;
+
     
     public ProductListServlet() {
         super();
@@ -40,6 +40,7 @@ public class ProductListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 전달된 파라미터를 이용하여 값 추출(처음에는 전달되는 값이 없음)
 		String pageNum = request.getParameter("pageNum"); // 페이지 번호
+	    String admin = request.getParameter("isAdmin");
 		int countPerPage = 3;
 		if(pageNum == null) {
 			pageNum = "1";
@@ -67,7 +68,7 @@ public class ProductListServlet extends HttpServlet {
 		
 		// View 보내기
 		String pageName = "";
-		if(admin)
+		if(admin == "true")
 			pageName = "admin/productMgr.jsp";
 		else
 			pageName = "/productList.jsp";

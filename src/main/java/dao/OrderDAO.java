@@ -33,8 +33,7 @@ public class OrderDAO extends MySQLConnector {
             if (rs.next()) {
             	product = new ProductDTO();
             	product.setNo(rs.getInt("no"));
-            	product.setProductno(rs.getInt("productno"));
-            	product.setProductname(rs.getString("productname"));
+            	product.setName(rs.getString("name"));
             	product.setPrice(rs.getInt("price"));
             	product.setStock(rs.getInt("stock"));
             }
@@ -43,7 +42,7 @@ public class OrderDAO extends MySQLConnector {
         } finally {
             closeResources();
         }
-        return productDTO;
+        return product;
     }
 	
 

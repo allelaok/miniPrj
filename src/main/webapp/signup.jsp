@@ -1,14 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath }"></c:set>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원 가입 화면: signup.jsp</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	/* 아이디 중복 체크 */
+	function fn_process() {
+		var _id = $("#id").val();
+		const regExp = /[a-zA-Z0-9]/g;
+		
+		if (!regExp.test(_id)) {
+			alert("영숫자만 가능합니다.");
+			$('#id').val('');
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			async: false,
+			url: "http://localhost:9000/shoppingMall/member/SignUpServlet/confirmDuplicate.do",
+			dataType: "text",
+			data: {id: _id},
+			
+			success:function(data, textStatus) {
+				if (data == 'usable') {
+					alert("사용할 수 있는 ID 입니다.");
+					$("#id").prop("readonly", true);
+					$("#double").prop("disabled", true)
+				} else {
+					alert("사용할 수 없는 ID입니다.")
+					$('#id').val('');
+				}
+			},
+			error:function(data, textStatus) {
+				alert("다시 한 번 시도해주세요.");
+			},
+			complete: function(data, textStatus) {
+				
+			}
+		})
+	}
+	
+	/* 비번 확인 */
+	$(document).ready(function() {
+		// 암호 확인 기능 구현
+		$("#pwd_check").keyup(function() {
+			if($("#pwd").val() !== $("#pwd_check").val()) {
+				$("#pwd_message").text("");
+				$("#pwd_message").html("<b>비밀번호가 틀립니다.</b>");
+			} else {
+				$("#pwd_message").text("");
+				$("#pwd_message").html("<b>비밀번호가 맞습니다.</b>");
+			}
+		})
+		
+		$("#pwd").keyup(function() {
+			$("#pwd_message").text("");
+		})
+	})
+	
+	/* 주소 검색 */
+</script>
 </head>
 <body>
-	<form action="memberCheck.jsp" method="post">
+	<form action="${ contextPath }/memberCheck.jsp" method="post"  accept-charset="UTF-8">
 		<table border="1" >
 			<colgroup>
 				<col width="150" />
@@ -24,29 +88,31 @@
 				<tr>
 					<td>아이디</td>
 					<td>
-						<input type="text" name="id" size="20" maxlength="20"/>
-						<input type="button" name="confirmDuplicate" value="ID중복확인" />
+						<input type="text" name="id" id="id" size="20" maxlength="20" required />
+						<input type="button" name="confirmDuplicate" id="double" onclick="fn_process()" value="ID중복확인" />
 					</td>
 					<td>아이디를 적어 주세요.</td>
 				</tr>
 				<tr>
 					<td>패스워드</td>
 					<td>
-						<input type="password" name="pwd" size="20" maxlength="20"/>
+						<input type="password" name="pwd" id="pwd" size="20" maxlength="20" required />
 					</td>
 					<td>패스워드를 적어 주세요.</td>
 				</tr>
 				<tr>
 					<td>패스워드 확인</td>
 					<td>
-						<input type="password" name="pwdcheck" size="20" maxlength="20"/>
-					</td>
+						<input type="password" name="pwd_check" id="pwd_check" size="20" maxlength="20" required />
+						&nbsp;
+						<span id="pwd_message"></span>
+					</td> 
 					<td>패스워드를 확인합니다.</td>
 				</tr>
 				<tr>
 					<td>이름</td>
 					<td>
-						<input type="text" name="name" size="20" maxlength="20"/>
+						<input type="text" name="name" size="20" maxlength="20" required />
 					</td>
 					<td>고객실명을 적어주세요.</td>
 				</tr>
@@ -54,16 +120,16 @@
 					<td>성별</td>
 					<td>
 					 <label for="male">남</label>
-					<input type="radio" id="male" name="gender" value="male" checked>
+					<input type="radio" id="male" name="gender" value="M" checked>
 					 <label for="female">여</label>
-					  <input type="radio" id="female" name="gender" value="female">
+					  <input type="radio" id="female" name="gender" value="F">
 					</td>
 					<td>성별을 선택하세요.</td>
 				</tr>
 				<tr>
 					<td>생년월일</td>
 					<td>
-						<input type="text" name="birthday" size="10" maxlength="20"/>
+						<input type="text" name="birthday" size="10" maxlength="6" pattern="[0-9]{6}" required />
 						 ex)830815
 					</td>
 					<td>생년월일을 적어 주세요.</td>
@@ -71,29 +137,30 @@
 				<tr>
 					<td>이메일</td>
 					<td>
-						<input type="email" name="email" size="30" maxlength="30"/>
+						<input type="email" name="email" size="30" maxlength="30" required />
 					</td>
 					<td>이메일을 적어주세요.</td>
 				</tr>
 				<tr>
 					<td>우편번호</td>
 					<td>
-						<input type="text" name="zipcode" size="10" maxlength="10"/>
-						<input type="button" name="findZipcode" value="우편번호찾기" />
+						<input type="text" name="zipcode" id="zipcode" size="10" maxlength="5" pattern="[0-9]{5}" required />
+						<c:import url="/component/searchZip.jsp" />
+						
 					</td>
 					<td>우편번호를 검색 하세요.</td>
 				</tr>
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" name="address" size="50" maxlength="50"/>
+						<input type="text" name="address" id="address" size="50" maxlength="50" required />
 					</td>
 					<td>주소를 적어주세요.</td>
 				</tr>
 				<tr>
 					<td>직업</td>
 					<td>
-						<select name="job">
+						<select name="job" required >
 						  <option value="" selected disabled>선택하세요</option>
 						  <option value="unemployed">무직</option>
 						  <option value="student">교직학생</option>
@@ -107,11 +174,11 @@
 				<tr>
 					<td>취미</td>
 					<td>
-						<label><input type="checkbox" name="hobby" value="internet">인터넷</label>
-						<label><input type="checkbox" name="hobby" value="travel">여행</label>
-						<label><input type="checkbox" name="hobby" value="gaming">게임</label>
-						<label><input type="checkbox" name="hobby" value="movie">영화</label>
-						<label><input type="checkbox" name="hobby" value="exercise">운동</label>
+						<label><input type="checkbox" name="internet" value="i">인터넷</label>
+						<label><input type="checkbox" name="travel" value="t">여행</label>
+						<label><input type="checkbox" name="gaming" value="g">게임</label>
+						<label><input type="checkbox" name="movie" value="m">영화</label>
+						<label><input type="checkbox" name="exercise" value="e">운동</label>
 					</td>
 					<td>취미를 선택하세요.</td>
 				</tr>

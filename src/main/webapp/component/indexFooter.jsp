@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +45,7 @@
 		</colgroup>
 		<tr>
 			<td style="background-color: orange;">Simple Shopping Mall 에 오신 것을 환영합니다.</td>
-			<td><input type="button" value="관리자"></td>
+			<td><input type="button" value="관리자" onclick="location.href='<c:url value="/admin/index.jsp"/>'" ></td>
 			
 		</tr>
 	</table>

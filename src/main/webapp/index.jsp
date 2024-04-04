@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +27,7 @@
 	</style>
 	<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script>
-		$(function(){
+/* 		$(function(){
 			  $('.tabcontent > div').hide();
 			  $('.tabnav a').click(function () {
 			    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
@@ -33,25 +35,29 @@
 			    $(this).addClass('active');
 			    return false;
 			  }).filter(':eq(0)').click();
-			  });
+			  }); */
 	</script>
 </head>
 <body>
-	<div class="tab">
+	<c:import url="/component/indexHeader.jsp" />
+	<%-- <div class="tab">
 	    <ul class="tabnav">
-	      <li><a href="#tab01">로그인</a></li>
-	      <li><a href="#tab02">회원가입</a></li>
+	      <li><a href="<c:url value="/member/LoginServlet" />">로그인</a></li>
+	      <li><a href="<c:url value="/member/SignUpServlet" />">회원가입</a></li>
 	      <li><a href="#tab03">상품목록</a></li>
 	      <li><a href="#tab04">장바구니</a></li>
 	      <li><a href="#tab05">구매목록</a></li>
 	    </ul>
-    <div class="tabcontent">
-      <div id="tab01">로그인 하신 후 이용해 주세요.</div>
-      <div id="tab02">로그인</div>
+    <div class="tabcontent"> --%>
+    <c:choose>
+	    <c:when test="${ not empty sessionScope.id }">
+	      	<p>${ sessionScope.id }님 방문해 주셔서 감사합니다.</p>
+	    </c:when>
+	    <c:otherwise>
+	    	<p>로그인 하신 후 이용해 주세요.</p>
+	    </c:otherwise>
+    </c:choose>
     </div>
-    <div>
-    	Simple Shopping Mall 에 오신 것을 환영합니다.
-    </div>
-  	</div><!--tab-->
+    <c:import url="/component/indexFooter.jsp" />
 </body>
 </html>

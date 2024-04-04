@@ -1,41 +1,51 @@
 package controller.admin;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.AdminDAO;
+import dao.MemberDAO;
 
 /**
- * Servlet implementation class AdminLoginServlet
+ * 관리자 로그아웃 controller
+ *  @author 임주연
  */
 @WebServlet("/admin/AdminLogoutServlet")
 public class AdminLogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private AdminDAO adminDAO = null;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AdminLogoutServlet() {
         super();
-        // TODO Auto-generated constructor stub
-    }
+    } // 생성자 END
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * GET 요청 수행(관리자 로그아웃)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		String nextPage = "/admin/index.jsp";
+		
+		HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(nextPage);
+		requestDispatcher.forward(request, response);
+		
+	} // GET() END
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+
+	} // POST() END
 
 }

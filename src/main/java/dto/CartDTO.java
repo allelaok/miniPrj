@@ -9,7 +9,15 @@ public class CartDTO {
 	public CartDTO() {
 		
 	}
-
+	
+	public CartDTO(int no, int productno, int quantity, String id) {
+		super();
+		this.no = no;
+		this.productno = productno;
+		this.quantity = quantity;
+		this.id = id;
+	}
+	
 	public int getNo() {
 		return no;
 	}
